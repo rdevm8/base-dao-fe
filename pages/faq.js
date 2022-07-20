@@ -1,4 +1,5 @@
 import Accordion from "../components/Accordion"
+import React, { useState } from "react"
 
 export default function Faq() {
     const faqs = [
@@ -34,8 +35,15 @@ export default function Faq() {
         },
     ]
 
+    const [activeIndex, setActiveIndex] = useState(0)
+
     const acccordions = faqs.map((faq) => (
-        <Accordion title={faq.title} index={faq.id}>
+        <Accordion
+            title={faq.title}
+            index={faq.id}
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+        >
             {faq.content}
         </Accordion>
     ))

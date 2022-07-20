@@ -1,17 +1,21 @@
 import { useState } from "react"
-import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai"
+import { AiFillCaretDown } from "react-icons/ai"
 
-export default function Accordion({ title, children, index, activeIndex }) {
+export default function Accordion({ title, children, index, activeIndex, setActiveIndex }) {
     const [isShowing, setIsShowing] = useState(false)
     const toggle = () => {
         setIsShowing(!isShowing)
+    }
+
+    const handleSetIndex = (index) => {
+        activeIndex !== index ? setActiveIndex(index) : setActiveIndex(0)
     }
 
     return (
         <div className="  text-white border  bg-black   hover:bg-red-900 transition-all duration-500">
             <div
                 // onClick={() => handleSetIndex(index)}
-                onClick={toggle}
+                onClick={() => handleSetIndex(index)}
                 className="flex justify-between p-4 cursor-pointer"
             >
                 <div className="flex text-white">
@@ -19,7 +23,7 @@ export default function Accordion({ title, children, index, activeIndex }) {
                 </div>
                 <div
                     className={`flex items-center justify-center transition-transform duration-500 ${
-                        isShowing ? " rotate-180" : "rotate-0"
+                        activeIndex === index ? " rotate-180" : "rotate-0"
                     }`}
                 >
                     <AiFillCaretDown className="w-4 h-4 text-white" />
@@ -27,7 +31,7 @@ export default function Accordion({ title, children, index, activeIndex }) {
             </div>
             <div
                 className={` text-stone-500 transition-all overflow-hidden duration-500  ${
-                    isShowing ? "max-h-max p-4" : "max-h-0"
+                    activeIndex === index ? "max-h-max p-4" : "max-h-0"
                 }`}
             >
                 {children}

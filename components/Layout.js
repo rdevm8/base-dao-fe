@@ -21,7 +21,9 @@ export default function Layout({ title, children }) {
                     <aside className="sticky">
                         <Sidebar />
                     </aside>
-                    <main className="bg-primary flex-1 p-4 overflow-y-auto">{children}</main>
+                    <main className="bg-primary flex-1 p-4 overflow-y-auto flex-col">
+                        {children}
+                    </main>
                 </div>
 
                 {/* <Footer></Footer> */}
