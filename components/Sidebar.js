@@ -1,5 +1,5 @@
 // import { useState } from "react"
-import { GiLockedChest, Gi3DGlasses } from "react-icons/gi"
+import { GiLockedChest } from "react-icons/gi"
 import { SiFacebook, SiDiscord, SiTwitter, SiTelegram } from "react-icons/si"
 import { IoAddCircleSharp } from "react-icons/io5"
 import Link from "next/link"
@@ -13,7 +13,7 @@ export default function Sidebar() {
                 <div className="p-1 mb-10">
                     <span className="text-stone-500 font-bold text-lg">COMMUNITY</span>
                     <ul>
-                        <li>
+                        <li className="cursor-pointer">
                             <Link href="/">
                                 <div className=" p-2 text-base text-white hover:bg-sky-700 rounded-lg">
                                     <span className="mr-2">
@@ -23,7 +23,7 @@ export default function Sidebar() {
                                 </div>
                             </Link>
                         </li>
-                        <li>
+                        <li className="cursor-pointer">
                             <Link href="/pool/create-pool">
                                 <div className=" p-2 text-base text-white hover:bg-sky-700 rounded-lg">
                                     <span className="mr-2">
@@ -38,7 +38,7 @@ export default function Sidebar() {
                 <div className="p-1">
                     <span className="text-stone-500 font-bold text-lg">INFORMATION</span>
                     <ul>
-                        <li>
+                        <li className="cursor-pointer">
                             <Link href="/faq">
                                 <div className=" p-2 text-base hover:bg-sky-700 text-white rounded-lg">
                                     <span className="mr-2">

@@ -1,7 +1,6 @@
 import React from "react"
 import Head from "next/head"
 import Header from "./Header"
-import Footer from "./Footer"
 import Sidebar from "./Sidebar"
 
 export default function Layout({ title, children }) {
@@ -21,7 +20,7 @@ export default function Layout({ title, children }) {
                     <aside className="sticky">
                         <Sidebar />
                     </aside>
-                    <main className="bg-primary flex-1 p-4 overflow-y-auto flex-col">
+                    <main className="bg-primary flex-1 p-4 overflow-y-auto flex-col  bg-gray-100 text-gray-900">
                         {children}
                     </main>
                 </div>
