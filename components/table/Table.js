@@ -30,6 +30,7 @@ export default function Table({ columns, data }) {
         state,
         preGlobalFilteredRows,
         setGlobalFilter,
+        pageIndex,
     } = useTable(
         {
             columns,
@@ -44,7 +45,7 @@ export default function Table({ columns, data }) {
     // Render the UI for your table
     return (
         <>
-            <div className="flex gap-x-2">
+            <div className="flex gap-x-2 border border-amber-400 rounded-md bg-amber-400 items-center justify-around p-4">
                 <GlobalFilter
                     preGlobalFilteredRows={preGlobalFilteredRows}
                     globalFilter={state.globalFilter}
@@ -55,16 +56,38 @@ export default function Table({ columns, data }) {
                         column.Filter ? <div key={column.id}>{column.render("Filter")}</div> : null
                     )
                 )}
+                <div>
+                    <label className="flex gap-x-2 items-baseline">
+                        <form className="w-full">
+                            <fieldset className=" border-4 border-red-700 rounded-lg items-center">
+                                <legend className=" font-bold">Page Size</legend>
+                                <select
+                                    className="block w-full bg-transparent border-none outline-0 hover:outline-0 active:outline-0 focus:ring-0"
+                                    value={state.pageSize}
+                                    onChange={(e) => {
+                                        setPageSize(Number(e.target.value))
+                                    }}
+                                >
+                                    {[5, 10, 20].map((pageSize) => (
+                                        <option key={pageSize} value={pageSize}>
+                                            Show {pageSize}
+                                        </option>
+                                    ))}
+                                </select>
+                            </fieldset>
+                        </form>
+                    </label>
+                </div>
             </div>
             <div className="mt-2 flex flex-col">
-                <div className="">
-                    <div className="align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                <div className="border border-amber-400 rounded-md bg-amber-400">
+                    <div className="align-middle inline-block min-w-full">
                         <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                             <table
                                 {...getTableProps()}
-                                className="min-w-full divide-y divide-gray-200"
+                                className="min-w-full divide-y divide-red-400"
                             >
-                                <thead className="bg-gray-50">
+                                <thead className="">
                                     {headerGroups.map((headerGroup) => (
                                         <tr {...headerGroup.getHeaderGroupProps()}>
                                             {headerGroup.headers.map((column) => (
@@ -99,7 +122,7 @@ export default function Table({ columns, data }) {
                                 </thead>
                                 <tbody
                                     {...getTableBodyProps()}
-                                    className="bg-white divide-y divide-gray-200"
+                                    className="bg-amber-300 divide-y divide-red-400"
                                 >
                                     {page.map((row, i) => {
                                         // new
@@ -134,31 +157,14 @@ export default function Table({ columns, data }) {
                 </div>
             </div>
             <div className="py-3 flex items-center justify-center">
-                <div className="flex flex-1 flex-row  items-center gap-x-5">
+                {/* <div className="flex flex-1 flex-row  items-center gap-x-5">
                     <div className="">
-                        <span className="text-sm text-gray-700  inline-block align-middle">
+                        <span className="text-sm text-gray-700 ">
                             Page <span className="font-medium">{state.pageIndex + 1}</span> of{" "}
                             <span className="font-medium">{pageOptions.length}</span>
                         </span>
                     </div>
-                    <div>
-                        <label>
-                            <select
-                                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-                                value={state.pageSize}
-                                onChange={(e) => {
-                                    setPageSize(Number(e.target.value))
-                                }}
-                            >
-                                {[5, 10, 20].map((pageSize) => (
-                                    <option key={pageSize} value={pageSize}>
-                                        Show {pageSize}
-                                    </option>
-                                ))}
-                            </select>
-                        </label>
-                    </div>
-                </div>
+                </div> */}
                 <div>
                     <nav
                         className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
@@ -170,12 +176,26 @@ export default function Table({ columns, data }) {
                             disabled={!canPreviousPage}
                         >
                             <span className="sr-only">First</span>
-                            <BsChevronDoubleLeft className="h-5 w-5" aria-hidden="true" />
+                            <BsChevronDoubleLeft className="h-5 w-5 " aria-hidden="true" />
                         </PageButton>
                         <PageButton onClick={() => previousPage()} disabled={!canPreviousPage}>
                             <span className="sr-only">Previous</span>
                             <BsChevronLeft className="h-5 w-5" aria-hidden="true" />
                         </PageButton>
+
+                        {[...Array(pageCount)].map((value, index) => {
+                            return (
+                                <PageButton onClick={() => gotoPage(index)}>
+                                    <span
+                                        className={`h-5 w-5 ${
+                                            state.pageIndex == index ? "bg-amber-300" : "bg-white"
+                                        }`}
+                                    >
+                                        {index + 1}
+                                    </span>
+                                </PageButton>
+                            )
+                        })}
                         <PageButton onClick={() => nextPage()} disabled={!canNextPage}>
                             <span className="sr-only">Next</span>
                             <BsChevronRight className="h-5 w-5" aria-hidden="true" />
