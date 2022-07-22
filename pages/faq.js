@@ -17,7 +17,7 @@ export default function Faq() {
     ))
 
     return (
-        <div className=" items-center text-center">
+        <div className=" items-center text-center text-red-700">
             <p className=" text-4xl font-bold">FAQs</p>
             <h3 className=" text-5xl font-bold mb-4">Frequently Asked Questions</h3>
             <div className=" text-justify">{acccordions}</div>

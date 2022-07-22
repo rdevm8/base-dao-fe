@@ -12,7 +12,7 @@ export function GlobalFilter({ preGlobalFilteredRows, globalFilter, setGlobalFil
     return (
         <label className="flex flex-1 gap-x-2 items-baseline">
             <form className="w-full">
-                <fieldset className=" border-4 border-red-700 rounded-lg items-center">
+                <fieldset className=" border-4 border-red-700 rounded-lg items-center px-3">
                     <legend className=" font-bold">
                         <span>Search</span>
                     </legend>

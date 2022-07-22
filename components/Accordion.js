@@ -12,13 +12,15 @@ export default function Accordion({ title, children, index, activeIndex, setActi
     }
 
     return (
-        <div className="  text-white border  bg-black   hover:bg-red-900 transition-all duration-500">
+        <div className="   border ">
             <div
                 // onClick={() => handleSetIndex(index)}
                 onClick={() => handleSetIndex(index)}
-                className="flex justify-between p-4 cursor-pointer"
+                className={`flex justify-between p-4 cursor-pointer text-red-700 bg-amber-400   hover:bg-amber-300 hover:text-red-600 transition-all duration-500 ${
+                    activeIndex === index ? " bg-amber-300" : "bg-amber-400"
+                }`}
             >
-                <div className="flex text-white">
+                <div className="flex">
                     <div className=" font-bold">{title}</div>
                 </div>
                 <div
@@ -26,11 +28,11 @@ export default function Accordion({ title, children, index, activeIndex, setActi
                         activeIndex === index ? " rotate-180" : "rotate-0"
                     }`}
                 >
-                    <AiFillCaretDown className="w-4 h-4 text-white" />
+                    <AiFillCaretDown className="w-4 h-4" />
                 </div>
             </div>
             <div
-                className={` text-stone-500 transition-all overflow-hidden duration-500  ${
+                className={`  transition-all overflow-hidden duration-500 bg-amber-100  ${
                     activeIndex === index ? "max-h-max p-4" : "max-h-0"
                 }`}
             >

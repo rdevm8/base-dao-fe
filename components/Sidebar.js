@@ -1,69 +1,78 @@
 // import { useState } from "react"
-import { GiLockedChest } from "react-icons/gi"
 import { SiFacebook, SiDiscord, SiTwitter, SiTelegram } from "react-icons/si"
-import { IoAddCircleSharp } from "react-icons/io5"
+import { classNames } from "../utilities/Utils"
+import { RiFundsFill, RiQuestionFill, RiAddCircleFill } from "react-icons/ri"
 import Link from "next/link"
 
 export default function Sidebar() {
-    // const { toggleCollapse, setToggleCollapse } = useState(false)
+    //CLASSES
+    const classSocialIcons = classNames(
+        "h-6 w-6  text-red-700 hover:text-red-600 transition-all duration-500"
+    )
+
+    const classListItem = classNames("cursor-pointer")
+    const classSubHeader = classNames("text-red-700  font-bold text-sm w-full")
+    const classLinkItem = classNames(
+        "flex items-center align-middle p-2 text-red-700 rounded-lg hover:bg-amber-200 hover:text-red-600 transition-all duration-200 font-bold text-lg"
+    )
+    const classIconItem = classNames("mr-1 h-6 w-6")
+    const classSubHeaderDiv = classNames("border-b-2 pb-2 mb-2 border-red-700")
 
     return (
-        <div className="bg-black flex justify-between flex-col w-60 border-r-2 border-dashed h-full">
-            <div className="p-2 flex-1">
-                <div className="p-1 mb-10">
-                    <span className="text-stone-500 font-bold text-lg">COMMUNITY</span>
+        <div className="bg-amber-400 flex justify-between flex-col w-60  h-full border-r-2 border-dotted border-red-700 ">
+            <div className="p-4 flex-1 flex flex-col gap-y-20">
+                <div className="">
+                    <div className={classSubHeaderDiv}>
+                        <span className={classSubHeader}>COMMUNITY</span>
+                    </div>
                     <ul>
-                        <li className="cursor-pointer">
+                        <li className={classListItem}>
                             <Link href="/">
-                                <div className=" p-2 text-base text-white hover:bg-sky-700 rounded-lg">
-                                    <span className="mr-2">
-                                        <GiLockedChest className="inline"></GiLockedChest>
-                                    </span>
+                                <span className={classLinkItem}>
+                                    <RiFundsFill className={classIconItem} />
                                     Pool
-                                </div>
+                                </span>
                             </Link>
                         </li>
-                        <li className="cursor-pointer">
+                        <li className={classListItem}>
                             <Link href="/pool/create-pool">
-                                <div className=" p-2 text-base text-white hover:bg-sky-700 rounded-lg">
-                                    <span className="mr-2">
-                                        <IoAddCircleSharp className="inline  text-white"></IoAddCircleSharp>
-                                    </span>
+                                <span className={classLinkItem}>
+                                    <RiAddCircleFill className={classIconItem} />
                                     Create Pool
-                                </div>
+                                </span>
                             </Link>
                         </li>
                     </ul>
                 </div>
-                <div className="p-1">
-                    <span className="text-stone-500 font-bold text-lg">INFORMATION</span>
+                <div className="">
+                    <div className={classSubHeaderDiv}>
+                        <span className={classSubHeader}>INFORMATION</span>
+                    </div>
                     <ul>
                         <li className="cursor-pointer">
                             <Link href="/faq">
-                                <div className=" p-2 text-base hover:bg-sky-700 text-white rounded-lg">
-                                    <span className="mr-2">
-                                        <GiLockedChest className="inline"></GiLockedChest>
-                                    </span>
+                                <span className={classLinkItem}>
+                                    <RiQuestionFill className={classIconItem} />
                                     FAQ
-                                </div>
+                                </span>
                             </Link>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div className="flex flex-row justify-evenly p-8 text-white text-2xl border-t-2 border-dashed">
-                <div>
-                    <SiFacebook></SiFacebook>
-                </div>
-                <div>
-                    <SiDiscord></SiDiscord>
-                </div>
-                <div>
-                    <SiTwitter></SiTwitter>
-                </div>
-                <div>
-                    <SiTelegram></SiTelegram>
-                </div>
+            <div className="flex flex-row justify-evenly p-6 border-t-2 border-dotted  border-red-700">
+                <a target="_blank" href="https://twitter.com/" rel="noopener noreferrer">
+                    <SiFacebook className={classSocialIcons}></SiFacebook>
+                </a>
+                <a target="_blank" href="https://twitter.com/" rel="noopener noreferrer">
+                    <SiDiscord className={classSocialIcons}></SiDiscord>
+                </a>
+                <a target="_blank" href="https://twitter.com/" rel="noopener noreferrer">
+                    <SiTwitter className={classSocialIcons}></SiTwitter>
+                </a>
+                <a target="_blank" href="https://twitter.com/" rel="noopener noreferrer">
+                    <SiTelegram className={classSocialIcons}></SiTelegram>
+                </a>
             </div>
         </div>
     )

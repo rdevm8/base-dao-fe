@@ -17,7 +17,7 @@ export function SelectColumnFilter({
     return (
         <label className="flex gap-x-2 items-baseline">
             <form className="w-full">
-                <fieldset className=" border-4 border-red-700 rounded-lg items-center">
+                <fieldset className=" border-4 border-red-700 rounded-lg items-center px-3">
                     <legend className=" font-bold">{render("Header")}</legend>
                     <select
                         className="block w-full bg-transparent border-none outline-0 hover:outline-0 active:outline-0 focus:ring-0"

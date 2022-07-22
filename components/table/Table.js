@@ -59,7 +59,7 @@ export default function Table({ columns, data }) {
                 <div>
                     <label className="flex gap-x-2 items-baseline">
                         <form className="w-full">
-                            <fieldset className=" border-4 border-red-700 rounded-lg items-center">
+                            <fieldset className=" border-4 border-red-700 rounded-lg items-center px-3">
                                 <legend className=" font-bold">Page Size</legend>
                                 <select
                                     className="block w-full bg-transparent border-none outline-0 hover:outline-0 active:outline-0 focus:ring-0"
@@ -157,56 +157,39 @@ export default function Table({ columns, data }) {
                 </div>
             </div>
             <div className="py-3 flex items-center justify-center">
-                {/* <div className="flex flex-1 flex-row  items-center gap-x-5">
-                    <div className="">
-                        <span className="text-sm text-gray-700 ">
-                            Page <span className="font-medium">{state.pageIndex + 1}</span> of{" "}
-                            <span className="font-medium">{pageOptions.length}</span>
-                        </span>
-                    </div>
-                </div> */}
                 <div>
                     <nav
-                        className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
+                        className="relative z-0 inline-flex rounded-md -space-x-px gap-x-2 w-full"
                         aria-label="Pagination"
                     >
-                        <PageButton
-                            className="rounded-l-md"
-                            onClick={() => gotoPage(0)}
-                            disabled={!canPreviousPage}
-                        >
+                        <PageButton onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
                             <span className="sr-only">First</span>
-                            <BsChevronDoubleLeft className="h-5 w-5 " aria-hidden="true" />
+                            <BsChevronDoubleLeft className="h-8 w-8 " aria-hidden="true" />
                         </PageButton>
                         <PageButton onClick={() => previousPage()} disabled={!canPreviousPage}>
                             <span className="sr-only">Previous</span>
-                            <BsChevronLeft className="h-5 w-5" aria-hidden="true" />
+                            <BsChevronLeft className="h-8 w-8" aria-hidden="true" />
                         </PageButton>
 
                         {[...Array(pageCount)].map((value, index) => {
                             return (
-                                <PageButton onClick={() => gotoPage(index)}>
-                                    <span
-                                        className={`h-5 w-5 ${
-                                            state.pageIndex == index ? "bg-amber-300" : "bg-white"
-                                        }`}
-                                    >
-                                        {index + 1}
-                                    </span>
+                                <PageButton
+                                    onClick={() => gotoPage(index)}
+                                    className={`h-8 w-8 ${
+                                        state.pageIndex == index ? "bg-amber-300" : "bg-white"
+                                    }`}
+                                >
+                                    <span className="h-8 w-8">{index + 1}</span>
                                 </PageButton>
                             )
                         })}
                         <PageButton onClick={() => nextPage()} disabled={!canNextPage}>
                             <span className="sr-only">Next</span>
-                            <BsChevronRight className="h-5 w-5" aria-hidden="true" />
+                            <BsChevronRight className="h-8 w-8" aria-hidden="true" />
                         </PageButton>
-                        <PageButton
-                            className="rounded-r-md"
-                            onClick={() => gotoPage(pageCount - 1)}
-                            disabled={!canNextPage}
-                        >
+                        <PageButton onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
                             <span className="sr-only">Last</span>
-                            <BsChevronDoubleRight className="h-5 w-5" aria-hidden="true" />
+                            <BsChevronDoubleRight className="h-8 w-8" aria-hidden="true" />
                         </PageButton>
                     </nav>
                 </div>
