@@ -98,14 +98,15 @@ export default function Table({ columns, data }) {
                                         <tr {...row.getRowProps()}>
                                             <td className="text-content py-2">
                                                 <Link
-                                                    href={{
-                                                        pathname: "/pools/[id]",
-                                                        query: {
-                                                            id: i,
-                                                        },
-                                                    }}
+                                                    // href={{
+                                                    //     pathname: "/[id]",
+                                                    //     query: {
+                                                    //         id: i,
+                                                    //     },
+                                                    // }}
+                                                    href={`pools/${i}`}
                                                 >
-                                                    <div className="p-4 flex flex-col gap-y-2  bg-secondary rounded-lg cursor-pointer">
+                                                    <div className="p-4 flex flex-col gap-y-2  bg-secondary rounded-lg cursor-pointer hover:opacity-90">
                                                         <div className="flex flex-row justify-between ">
                                                             <div className="flex items-center text-black align-middle bg-accent px-2 rounded-lg">
                                                                 <FaUserCircle />
