@@ -1,3 +1,3 @@
 export default function viewPools() {
-    return <div>pool</div>
+    return <div className="text-content">pool</div>
 }

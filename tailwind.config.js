@@ -11,6 +11,8 @@ module.exports = {
                 secondary: colors.stone["800"],
                 accent: colors.stone["400"],
                 content: colors.white,
+                //text-stone-500
+                subcontent: colors.stone["500"],
             },
             transitionDuration: {
                 primary: "500ms",

@@ -33,14 +33,8 @@ export default function Header() {
     )
 
     return (
-        <nav className="flex items-center justify-between shadow-lg bg-secondary sticky top-0 h-full border-b-2 border-dotted  border-accent">
-            <div className=" w-60 p-4 border-r-2 border-dotted border-accent items-center align-middle text-center">
-                <Link href="/">
-                    <a className=" text-3xl font-bold text-content">DAO</a>
-                </Link>
-            </div>
-
-            <div className="flex flex-row p-4 gap-x-2">
+        <nav className="flex items-center justify-between shadow-lg sticky h-20 border-b-2 border-dotted  border-accent">
+            <div className="flex flex-row p-4 gap-x-2 flex-1 justify-end">
                 {account ? (
                     <div className={classWalletItem}>
                         <button

@@ -12,6 +12,7 @@ import { SortDownIcon, SortUpIcon, SortIcon } from "../../utilities/Icons"
 import { GlobalFilter } from "./GlobalFilter"
 import { StatusPill } from "./StatusPill"
 import { FaUserCircle, FaEthereum, FaPeopleArrows } from "react-icons/fa"
+import Link from "next/link"
 
 export default function Table({ columns, data }) {
     // Use the state and functions returned from useTable to build your UI
@@ -47,7 +48,7 @@ export default function Table({ columns, data }) {
     // Render the UI for your table
     return (
         <>
-            <div className="flex gap-x-2 border border-accent rounded-md bg-secondary items-center justify-around p-4">
+            <div className="hidden md:flex gap-x-2 border border-accent rounded-md bg-secondary items-center justify-around p-4">
                 <GlobalFilter
                     preGlobalFilteredRows={preGlobalFilteredRows}
                     globalFilter={state.globalFilter}
@@ -95,56 +96,68 @@ export default function Table({ columns, data }) {
                                     prepareRow(row)
                                     return (
                                         <tr {...row.getRowProps()}>
-                                            <td className="text-content py-2 ">
-                                                <div className="p-4 flex flex-col gap-y-2  bg-secondary rounded-lg cursor-pointer">
-                                                    <div className="flex flex-row justify-between ">
-                                                        <div className="flex items-center text-black align-middle bg-accent px-2 rounded-lg">
-                                                            <FaUserCircle />
-                                                            <span className=" font-semibold text-md ml-2">
-                                                                {row.values.creator.slice(0, 6)}
-                                                                ...
-                                                                {row.values.creator.slice(
-                                                                    row.values.creator.length - 4
-                                                                )}
-                                                            </span>
+                                            <td className="text-content py-2">
+                                                <Link
+                                                    href={{
+                                                        pathname: "/pools/[id]",
+                                                        query: {
+                                                            id: i,
+                                                        },
+                                                    }}
+                                                >
+                                                    <div className="p-4 flex flex-col gap-y-2  bg-secondary rounded-lg cursor-pointer">
+                                                        <div className="flex flex-row justify-between ">
+                                                            <div className="flex items-center text-black align-middle bg-accent px-2 rounded-lg">
+                                                                <FaUserCircle />
+                                                                <span className=" font-semibold text-md ml-2">
+                                                                    {row.values.creator.slice(0, 6)}
+                                                                    ...
+                                                                    {row.values.creator.slice(
+                                                                        row.values.creator.length -
+                                                                            4
+                                                                    )}
+                                                                </span>
+                                                            </div>
+                                                            <div>
+                                                                <p>
+                                                                    {StatusPill(row.values.status)}
+                                                                </p>
+                                                            </div>
                                                         </div>
                                                         <div>
-                                                            <p>{StatusPill(row.values.status)}</p>
+                                                            <p className="text-lg font-extrabold">
+                                                                {row.values.title}
+                                                            </p>
                                                         </div>
-                                                    </div>
-                                                    <div>
-                                                        <p className="text-lg font-extrabold">
-                                                            {row.values.title}
-                                                        </p>
-                                                    </div>
-                                                    <div>
-                                                        <p className="text-md text-content text-justify">
-                                                            {row.values.description}
-                                                        </p>
-                                                    </div>
-                                                    <div>
-                                                        <hr className="text-accent"></hr>
-                                                    </div>
-                                                    <div className="flex flex-row justify-between items-center">
-                                                        <div className="text-stone-500 text-sm italic">
-                                                            Created on {row.values.dtCreate}
+                                                        <div>
+                                                            <p className="text-md text-content text-justify">
+                                                                {row.values.description}
+                                                            </p>
                                                         </div>
-                                                        <div className=" flex divide-x divide-accent">
-                                                            <div className="flex items-center align-middle px-2">
-                                                                <FaEthereum />
-                                                                <span className="text-content font-semibold text-md ml-2">
-                                                                    {row.values.amount}
-                                                                </span>
+                                                        <div>
+                                                            <hr className="text-accent"></hr>
+                                                        </div>
+                                                        <div className="flex flex-row justify-between items-center">
+                                                            <div className="text-stone-500 text-sm italic">
+                                                                Created on {row.values.dtCreate}
                                                             </div>
-                                                            <div className="flex items-center align-middle px-2">
-                                                                <FaPeopleArrows />
-                                                                <span className="text-content font-semibold text-md ml-2">
-                                                                    {row.values.funders}
-                                                                </span>
+                                                            <div className=" flex divide-x divide-accent">
+                                                                <div className="flex items-center align-middle px-2">
+                                                                    <FaEthereum />
+                                                                    <span className="text-content font-semibold text-md ml-2">
+                                                                        {row.values.amount}
+                                                                    </span>
+                                                                </div>
+                                                                <div className="flex items-center align-middle px-2">
+                                                                    <FaPeopleArrows />
+                                                                    <span className="text-content font-semibold text-md ml-2">
+                                                                        {row.values.funders}
+                                                                    </span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </Link>
                                             </td>
                                         </tr>
                                     )

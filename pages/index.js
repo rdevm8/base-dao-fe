@@ -1,8 +1,8 @@
 import React from "react"
 import Table from "../components/table/Table"
-import { data, cols } from "../data/mocks/data"
+import { data, cols, generateData } from "../data/mocks/data"
 
-const getData = () => data
+const getData = () => generateData()
 
 export default function Home() {
     const columns = React.useMemo(() => cols, [])

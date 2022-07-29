@@ -21,10 +21,13 @@ export default function Sidebar() {
 
     const router = useRouter()
 
-    console.log(router.pathname)
-
     return (
-        <div className="bg-secondary flex justify-between flex-col sm:w-60  h-full border-r-2 border-dotted border-accent ">
+        <div className="bg-secondary justify-between flex-col h-full border-r-2 border-dotted border-accent flex w-60">
+            <div className="border-b-2 border-dotted border-accent items-center align-middle text-center h-20 flex justify-center">
+                <Link href="/">
+                    <a className=" text-3xl font-bold text-content">DAO</a>
+                </Link>
+            </div>
             <div className="p-4 flex-1 flex flex-col gap-y-20">
                 <div className="">
                     <div className={classSubHeaderDiv}>
@@ -39,6 +42,7 @@ export default function Sidebar() {
                                             ? "bg-accent text-black"
                                             : "text-content"
                                     }`}
+                                    aria-label="Link"
                                 >
                                     <RiFundsFill className={classIconItem} />
                                     Pool
@@ -53,6 +57,7 @@ export default function Sidebar() {
                                             ? "bg-accent text-black"
                                             : "text-content"
                                     }`}
+                                    aria-label="Link"
                                 >
                                     <RiAddCircleFill className={classIconItem} />
                                     Create Pool
@@ -74,6 +79,7 @@ export default function Sidebar() {
                                             ? " text-black bg-accent"
                                             : "text-content"
                                     }`}
+                                    aria-label="Link"
                                 >
                                     <RiQuestionFill className={classIconItem} />
                                     FAQ

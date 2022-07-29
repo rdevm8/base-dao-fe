@@ -3,8 +3,6 @@ import { classNames } from "../../utilities/Utils"
 export function StatusPill(value) {
     const status = value ? value.toLowerCase() : "unknown"
 
-    console.log(status)
-
     return (
         <span
             className={classNames(
