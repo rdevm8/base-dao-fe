@@ -17,10 +17,10 @@ export function SelectColumnFilter({
     return (
         <label className="flex gap-x-2 items-baseline">
             <form className="w-full">
-                <fieldset className=" border-4 border-red-700 rounded-lg items-center px-3">
-                    <legend className=" font-bold">{render("Header")}</legend>
+                <fieldset className=" border-2 border-content rounded-lg items-center px-3">
+                    <legend className=" font-bold text-content">{render("Header")}</legend>
                     <select
-                        className="block w-full bg-transparent border-none outline-0 hover:outline-0 active:outline-0 focus:ring-0"
+                        className="block w-full bg-transparent border-2 rounded-md border-accent outline-0 hover:outline-0 active:outline-0 focus:border-accent focus:ring-0  text-content mb-2 caret-content"
                         name={id}
                         id={id}
                         value={filterValue}
@@ -28,9 +28,11 @@ export function SelectColumnFilter({
                             setFilter(e.target.value || undefined)
                         }}
                     >
-                        <option value="">All</option>
+                        <option className="text-content bg-secondary" value="">
+                            All
+                        </option>
                         {options.map((option, i) => (
-                            <option key={i} value={option}>
+                            <option className="text-content bg-secondary" key={i} value={option}>
                                 {option}
                             </option>
                         ))}

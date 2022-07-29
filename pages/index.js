@@ -14,7 +14,7 @@ export default function Home() {
             <div>
                 <main className="">
                     <div className="">
-                        <h1 className="text-xl font-semibold">POOLS</h1>
+                        <h1 className="text-4xl font-bold text-content">POOLS</h1>
                     </div>
                     <div className="mt-4">
                         <Table columns={columns} data={data} />

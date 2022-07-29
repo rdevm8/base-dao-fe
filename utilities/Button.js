@@ -22,7 +22,7 @@ export function PageButton({ children, className, ...rest }) {
         <button
             type="button"
             className={classNames(
-                "relative items-center align-middle border border-gray-300 text-sm font-medium text-gray-500 hover:bg-gray-50 rounded-full",
+                "rounded-full  w-8 h-8  justify-center items-center flex align-middle",
                 className
             )}
             {...rest}

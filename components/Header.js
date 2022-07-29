@@ -28,17 +28,21 @@ export default function Header() {
         })
     }, [])
 
+    const classWalletItem = classNames(
+        "p-2 text-white rounded-lg bg-gradient-to-r from-sky-900 via-sky-700 to-sky-500 hover:opacity-80 flex items-center align-middle"
+    )
+
     return (
-        <nav className="flex items-center justify-between shadow-lg bg-amber-400 sticky top-0 h-full border-b-2 border-dotted  border-red-700">
-            <div className=" w-60 p-4 border-r-2 border-dotted border-red-700 items-center align-middle text-center">
+        <nav className="flex items-center justify-between shadow-lg bg-secondary sticky top-0 h-full border-b-2 border-dotted  border-accent">
+            <div className=" w-60 p-4 border-r-2 border-dotted border-accent items-center align-middle text-center">
                 <Link href="/">
-                    <a className=" text-3xl font-bold">POOLING</a>
+                    <a className=" text-3xl font-bold text-content">DAO</a>
                 </Link>
             </div>
 
             <div className="flex flex-row p-4 gap-x-2">
                 {account ? (
-                    <div className="p-2 text-white rounded-lg bg-gradient-to-r from-red-900 via-red-700 to-red-500 hover:opacity-80 flex items-center align-middle">
+                    <div className={classWalletItem}>
                         <button
                             onClick={async () => {
                                 deactivateWeb3()
@@ -52,7 +56,7 @@ export default function Header() {
                         </button>
                     </div>
                 ) : (
-                    <div className="p-2 text-white rounded-lg bg-gradient-to-r from-red-900 via-red-700 to-red-500 hover:opacity-80 flex items-center align-middle ">
+                    <div className={classWalletItem}>
                         <button
                             onClick={async () => {
                                 await enableWeb3()
@@ -70,7 +74,7 @@ export default function Header() {
                         </button>
                     </div>
                 )}
-                <div className="p-2 text-base hover:opacity-80  bg-red-600 text-white rounded-lg flex items-center align-middle hover:bg-red-600">
+                <div className="p-2 bg-secondary text-content rounded-lg flex items-center align-middle hover:text-black hover:bg-accent border border-accent transition-all duration-primary">
                     <button>
                         <span className="flex items-center align-middle">
                             <GoGear className="w-5 h-5" />

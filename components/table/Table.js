@@ -10,6 +10,8 @@ import {
 } from "react-icons/bs"
 import { SortDownIcon, SortUpIcon, SortIcon } from "../../utilities/Icons"
 import { GlobalFilter } from "./GlobalFilter"
+import { StatusPill } from "./StatusPill"
+import { FaUserCircle, FaEthereum, FaPeopleArrows } from "react-icons/fa"
 
 export default function Table({ columns, data }) {
     // Use the state and functions returned from useTable to build your UI
@@ -45,7 +47,7 @@ export default function Table({ columns, data }) {
     // Render the UI for your table
     return (
         <>
-            <div className="flex gap-x-2 border border-amber-400 rounded-md bg-amber-400 items-center justify-around p-4">
+            <div className="flex gap-x-2 border border-accent rounded-md bg-secondary items-center justify-around p-4">
                 <GlobalFilter
                     preGlobalFilteredRows={preGlobalFilteredRows}
                     globalFilter={state.globalFilter}
@@ -59,17 +61,21 @@ export default function Table({ columns, data }) {
                 <div>
                     <label className="flex gap-x-2 items-baseline">
                         <form className="w-full">
-                            <fieldset className=" border-4 border-red-700 rounded-lg items-center px-3">
-                                <legend className=" font-bold">Page Size</legend>
+                            <fieldset className=" border-2 border-content rounded-lg items-center px-3">
+                                <legend className=" font-bold text-content">Page Size</legend>
                                 <select
-                                    className="block w-full bg-transparent border-none outline-0 hover:outline-0 active:outline-0 focus:ring-0"
+                                    className="block w-full bg-transparent border-2 rounded-md border-accent outline-0 hover:outline-0 active:outline-0 focus:border-accent focus:ring-0  text-content mb-2 caret-content"
                                     value={state.pageSize}
                                     onChange={(e) => {
                                         setPageSize(Number(e.target.value))
                                     }}
                                 >
                                     {[5, 10, 20].map((pageSize) => (
-                                        <option key={pageSize} value={pageSize}>
+                                        <option
+                                            className="text-content bg-secondary"
+                                            key={pageSize}
+                                            value={pageSize}
+                                        >
                                             Show {pageSize}
                                         </option>
                                     ))}
@@ -79,87 +85,100 @@ export default function Table({ columns, data }) {
                     </label>
                 </div>
             </div>
-            <div className="mt-2 flex flex-col">
-                <div className="border border-amber-400 rounded-md bg-amber-400">
-                    <div className="align-middle inline-block min-w-full">
-                        <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                            <table
-                                {...getTableProps()}
-                                className="min-w-full divide-y divide-red-400"
-                            >
-                                <thead className="">
-                                    {headerGroups.map((headerGroup) => (
-                                        <tr {...headerGroup.getHeaderGroupProps()}>
-                                            {headerGroup.headers.map((column) => (
-                                                // Add the sorting props to control sorting. For this example
-                                                // we can add them into the header props
-                                                <th
-                                                    scope="col"
-                                                    className="group px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                                    {...column.getHeaderProps(
-                                                        column.getSortByToggleProps()
-                                                    )}
-                                                >
-                                                    <div className="flex items-center justify-between">
-                                                        {column.render("Header")}
-                                                        {/* Add a sort direction indicator */}
-                                                        <span>
-                                                            {column.isSorted ? (
-                                                                column.isSortedDesc ? (
-                                                                    <SortDownIcon className="w-4 h-4 text-gray-400" />
-                                                                ) : (
-                                                                    <SortUpIcon className="w-4 h-4 text-gray-400" />
-                                                                )
-                                                            ) : (
-                                                                <SortIcon className="w-4 h-4 text-gray-400 opacity-0 group-hover:opacity-100" />
-                                                            )}
-                                                        </span>
+            <div className="mt-2 flex flex-col ">
+                <div className="align-middle inline-block min-w-full">
+                    <div className="shadow overflow-hidden sm:rounded-lg">
+                        <table {...getTableProps()} className="min-w-full">
+                            <tbody {...getTableBodyProps()} className="">
+                                {page.map((row, i) => {
+                                    // new
+                                    prepareRow(row)
+                                    return (
+                                        <tr {...row.getRowProps()}>
+                                            <td className="text-content py-2 ">
+                                                <div className="p-4 flex flex-col gap-y-2  bg-secondary rounded-lg cursor-pointer">
+                                                    <div className="flex flex-row justify-between ">
+                                                        <div className="flex items-center text-black align-middle bg-accent px-2 rounded-lg">
+                                                            <FaUserCircle />
+                                                            <span className=" font-semibold text-md ml-2">
+                                                                {row.values.creator.slice(0, 6)}
+                                                                ...
+                                                                {row.values.creator.slice(
+                                                                    row.values.creator.length - 4
+                                                                )}
+                                                            </span>
+                                                        </div>
+                                                        <div>
+                                                            <p>{StatusPill(row.values.status)}</p>
+                                                        </div>
                                                     </div>
-                                                </th>
-                                            ))}
+                                                    <div>
+                                                        <p className="text-lg font-extrabold">
+                                                            {row.values.title}
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <p className="text-md text-content text-justify">
+                                                            {row.values.description}
+                                                        </p>
+                                                    </div>
+                                                    <div>
+                                                        <hr className="text-accent"></hr>
+                                                    </div>
+                                                    <div className="flex flex-row justify-between items-center">
+                                                        <div className="text-stone-500 text-sm italic">
+                                                            Created on {row.values.dtCreate}
+                                                        </div>
+                                                        <div className=" flex divide-x divide-accent">
+                                                            <div className="flex items-center align-middle px-2">
+                                                                <FaEthereum />
+                                                                <span className="text-content font-semibold text-md ml-2">
+                                                                    {row.values.amount}
+                                                                </span>
+                                                            </div>
+                                                            <div className="flex items-center align-middle px-2">
+                                                                <FaPeopleArrows />
+                                                                <span className="text-content font-semibold text-md ml-2">
+                                                                    {row.values.funders}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
                                         </tr>
-                                    ))}
-                                </thead>
-                                <tbody
-                                    {...getTableBodyProps()}
-                                    className="bg-amber-300 divide-y divide-red-400"
-                                >
-                                    {page.map((row, i) => {
-                                        // new
-                                        prepareRow(row)
-                                        return (
-                                            <tr {...row.getRowProps()}>
-                                                {row.cells.map((cell) => {
-                                                    return (
-                                                        <td
-                                                            {...cell.getCellProps()}
-                                                            className="px-6 py-4 whitespace-nowrap"
-                                                            role="cell"
-                                                        >
-                                                            {cell.column.Cell.name ===
-                                                            "defaultRenderer" ? (
-                                                                <div className="text-sm text-gray-500">
-                                                                    {cell.render("Cell")}
-                                                                </div>
-                                                            ) : (
-                                                                cell.render("Cell")
-                                                            )}
-                                                        </td>
-                                                    )
-                                                })}
-                                            </tr>
-                                        )
-                                    })}
-                                </tbody>
-                            </table>
-                        </div>
+                                    )
+                                })}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
-            <div className="py-3 flex items-center justify-center">
+            <nav className="mt-2 text-white flex justify-center items-center gap-x-3">
+                {[...Array(pageCount)].map((value, index) => {
+                    return (
+                        <PageButton
+                            onClick={() => gotoPage(index)}
+                            className={`${
+                                state.pageIndex == index
+                                    ? "bg-accent text-black border border-accent transition-all tansition-primary"
+                                    : " text-content border-none hover:bg-accent hover:text-black transition-all tansition-primary"
+                            }`}
+                        >
+                            {index + 1}
+                        </PageButton>
+                    )
+                })}
+                {/* <PageButton>1</PageButton>
+                <div className=" rounded-full bg-content w-8 h-8 text-black justify-center items-center flex">
+                    1
+                </div>
+                <div>2</div> */}
+            </nav>
+            {/* <div className="py-3 flex items-center justify-center">
                 <div>
                     <nav
-                        className="relative z-0 inline-flex rounded-md -space-x-px gap-x-2 w-full"
+                        className="relative z-0 inline-flex -space-x-px gap-x-2 w-full"
                         aria-label="Pagination"
                     >
                         <PageButton onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
@@ -176,10 +195,12 @@ export default function Table({ columns, data }) {
                                 <PageButton
                                     onClick={() => gotoPage(index)}
                                     className={`h-8 w-8 ${
-                                        state.pageIndex == index ? "bg-amber-300" : "bg-white"
+                                        state.pageIndex == index
+                                            ? "bg-accent text-black border border-accent"
+                                            : " text-content border-none"
                                     }`}
                                 >
-                                    <span className="h-8 w-8">{index + 1}</span>
+                                    <span className="text-lg">{index + 1}</span>
                                 </PageButton>
                             )
                         })}
@@ -193,7 +214,7 @@ export default function Table({ columns, data }) {
                         </PageButton>
                     </nav>
                 </div>
-            </div>
+            </div> */}
         </>
     )
 }
