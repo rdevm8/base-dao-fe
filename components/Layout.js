@@ -66,7 +66,7 @@ export default function Layout({ title, children }) {
                             <Header></Header>
                         </div>
                     </div>
-                    <main className=" bg-background flex-1 p-4 overflow-y-auto flex-col  text-gray-900 ">
+                    <main className=" bg-background flex flex-1 p-4 overflow-y-auto flex-col  text-gray-900 ">
                         {children}
                     </main>
                 </div>

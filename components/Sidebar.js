@@ -50,17 +50,17 @@ export default function Sidebar() {
                             </Link>
                         </li>
                         <li className={classListItem}>
-                            <Link href="/pool/create-pool">
+                            <Link href="/my-pools">
                                 <span
                                     className={`${classLinkItem} ${
-                                        router.pathname === "/pool/create-pool"
+                                        router.pathname === "/my-pools"
                                             ? "bg-accent text-black"
                                             : "text-content"
                                     }`}
                                     aria-label="Link"
                                 >
                                     <RiAddCircleFill className={classIconItem} />
-                                    Create Pool
+                                    My Pools
                                 </span>
                             </Link>
                         </li>

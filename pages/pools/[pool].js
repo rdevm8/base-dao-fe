@@ -83,20 +83,24 @@ export default function Pool() {
                                     </tr>
                                 </thead>
                                 <tbody className="text-center">
-                                    {[...Array(activitiesCount)].map((v, i) => {
+                                    {[...Array(activitiesCount)].map((value, index) => {
                                         return (
-                                            <tr>
+                                            <tr key={index}>
                                                 <td className="border py-2">Added Pool</td>
                                                 <td className="border py-2">
                                                     July 30, 1992 12:00 PM UTC
                                                 </td>
-                                                <td className="flex items-center align-middle text-md justify-center border py-2">
-                                                    <FaUserCircle />
-                                                    <span className="ml-2">
-                                                        {submitterId.slice(0, 6)}
-                                                        ...
-                                                        {submitterId.slice(submitterId.length - 4)}
-                                                    </span>
+                                                <td className="border py-2">
+                                                    <div className="flex items-center align-middle text-md justify-center">
+                                                        <FaUserCircle />
+                                                        <span className="ml-2">
+                                                            {submitterId.slice(0, 6)}
+                                                            ...
+                                                            {submitterId.slice(
+                                                                submitterId.length - 4
+                                                            )}
+                                                        </span>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         )
@@ -166,7 +170,7 @@ export default function Pool() {
                                 <tbody>
                                     {[...Array(fundersCount)].map((value, index) => {
                                         return (
-                                            <tr className="text-center mb-10">
+                                            <tr className="text-center mb-10" key={index}>
                                                 <td>
                                                     <div className="flex items-center align-middle text-md mb-2">
                                                         <FaUserCircle />

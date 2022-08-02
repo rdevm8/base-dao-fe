@@ -1,11 +1,11 @@
-import { useState } from "react"
+//import { useState } from "react"
 import { AiFillCaretDown } from "react-icons/ai"
 
 export default function Accordion({ title, children, index, activeIndex, setActiveIndex }) {
-    const [isShowing, setIsShowing] = useState(false)
-    const toggle = () => {
-        setIsShowing(!isShowing)
-    }
+    //const [isShowing, setIsShowing] = useState(false)
+    // const toggle = () => {
+    //     setIsShowing(!isShowing)
+    // }
 
     const handleSetIndex = (index) => {
         activeIndex !== index ? setActiveIndex(index) : setActiveIndex(0)

@@ -11,6 +11,7 @@ export default function Faq() {
             index={faq.id}
             activeIndex={activeIndex}
             setActiveIndex={setActiveIndex}
+            key={faq.id}
         >
             {faq.content}
         </Accordion>

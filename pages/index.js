@@ -1,6 +1,6 @@
 import React from "react"
 import Table from "../components/table/Table"
-import { data, cols, generateData } from "../data/mocks/data"
+import { cols, generateData } from "../data/mocks/data"
 
 const getData = () => generateData()
 

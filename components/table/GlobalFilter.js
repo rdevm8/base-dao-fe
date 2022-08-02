@@ -1,6 +1,5 @@
 import React from "react"
 import { useAsyncDebounce } from "react-table"
-import { classNames } from "../../utilities/Utils"
 
 export function GlobalFilter({ preGlobalFilteredRows, globalFilter, setGlobalFilter }) {
     const count = preGlobalFilteredRows.length
