@@ -1,6 +1,7 @@
 import Accordion from "../components/Accordion"
 import React, { useState } from "react"
 import { faqs } from "../data/mocks/faqs"
+import { TitleHeader } from "../utilities/Title"
 
 export default function Faq() {
     const [activeIndex, setActiveIndex] = useState(0)
@@ -18,10 +19,11 @@ export default function Faq() {
     ))
 
     return (
-        <div className=" items-center text-center  text-content">
-            <p className=" text-4xl font-bold">FAQs</p>
-            <h3 className=" text-5xl font-bold mb-4">Frequently Asked Questions</h3>
-            <div className=" text-justify">{acccordions}</div>
+        <div className="flex flex-col flex-1 text-content gap-y-4">
+            <div>
+                <TitleHeader>Frequently Asked Questions</TitleHeader>
+            </div>
+            <div className="flex flex-col flex-1 text-justify gap-y-1">{acccordions}</div>
         </div>
     )
 }

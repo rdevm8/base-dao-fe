@@ -5,7 +5,7 @@ import Sidebar from "./Sidebar"
 import { GiHamburgerMenu } from "react-icons/gi"
 import { useEffect, useRef, useState } from "react"
 
-export default function Layout({ title, children }) {
+export default function Layout({ title, children, createMode }) {
     const ref = useRef()
     const [isShowing, setIsShowing] = useState(false)
     const toggle = () => {
@@ -70,8 +70,6 @@ export default function Layout({ title, children }) {
                         {children}
                     </main>
                 </div>
-
-                {/* <Footer></Footer> */}
             </div>
         </>
     )

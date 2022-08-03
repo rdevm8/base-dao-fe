@@ -114,3 +114,7 @@
         flex-direction: column;
     }
 }
+
+.Toastify__toast-theme--light {
+    background: #991b1b !important;
+}

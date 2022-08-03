@@ -2,13 +2,6 @@ import React from "react"
 import { useTable, useGlobalFilter, useFilters, useSortBy, usePagination } from "react-table"
 
 import { Button, PageButton } from "../../utilities/Button"
-import {
-    BsChevronLeft,
-    BsChevronDoubleLeft,
-    BsChevronRight,
-    BsChevronDoubleRight,
-} from "react-icons/bs"
-import { SortDownIcon, SortUpIcon, SortIcon } from "../../utilities/Icons"
 import { GlobalFilter } from "./GlobalFilter"
 import { StatusPill } from "./StatusPill"
 import { FaUserCircle, FaEthereum, FaPeopleArrows } from "react-icons/fa"
@@ -22,18 +15,12 @@ export default function Table({ columns, data }) {
         headerGroups,
         page,
         prepareRow,
-        canPreviousPage,
-        canNextPage,
-        pageOptions,
         pageCount,
         gotoPage,
-        nextPage,
-        previousPage,
         setPageSize,
         state,
         preGlobalFilteredRows,
         setGlobalFilter,
-        pageIndex,
     } = useTable(
         {
             columns,
