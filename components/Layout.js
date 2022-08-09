@@ -44,6 +44,7 @@ export default function Layout({ title, children, createMode }) {
                 <meta name="description" content="Base DAO Application" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
+
             <div className="flex flex-row h-screen ">
                 <div className=" " ref={ref}>
                     <aside

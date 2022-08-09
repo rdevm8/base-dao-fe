@@ -5,7 +5,6 @@ import CreatePool from "./create-pool"
 import { TitleHeader } from "../utilities/Title"
 
 import React from "react"
-import { NotifSuccess } from "../utilities/Notifications"
 
 export default function MyPools() {
     const [isOpen, setIsOpen] = useState(false)
