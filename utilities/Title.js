@@ -4,8 +4,8 @@ import { classNames } from "./Utils"
 
 export function TitleHeader({ children, className, ...rest }) {
     return (
-        <h1 className={classNames("text-4xl font-bold text-content", className)} {...rest}>
+        <div className={classNames(" text-xl font-bold text-content pb-4", className)} {...rest}>
             {children.toString().toUpperCase()}
-        </h1>
+        </div>
     )
 }

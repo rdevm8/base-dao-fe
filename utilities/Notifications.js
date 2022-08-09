@@ -17,5 +17,14 @@ export const NotifSuccess = (msg) => {
 }
 
 export const NotifError = (msg) => {
-    return () => toast.error(msg, notifArgs)
+    toast.error(msg, notifArgs)
+}
+
+export const NotifLoading = (msg) => {
+    // notifArgs.hideProgressBar = true
+    // notifArgs.closeOnClick = false
+    // notifArgs.draggable = false
+    // notifArgs.autoClose = false
+    // toast.warning(msg, notifArgs)
+    toast.loading("Please wait...")
 }
